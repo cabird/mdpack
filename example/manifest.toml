@@ -1,0 +1,53 @@
+# mdpack example project
+#
+# All configuration for the packer lives here.
+# Run:  python mdpack.py example/
+
+# ---------- Output ----------
+
+# Bundle output filename (written to the current working directory)
+output = "EXAMPLE.mdpack"
+
+# Default directory name the unpacker creates when extracting
+unpack_dir = "example_md_docs"
+
+# ---------- Bootstrap ----------
+
+# The first file an agent should read after unpacking.
+# This is highlighted in the GUIDE.md and in the front matter.
+bootstrap = "getting_started.md"
+
+# ---------- Source file selection ----------
+
+# Explicit list of text files / glob patterns to include.
+# If omitted, ALL .md files under this directory are included.
+# Supports any text file type — .md, .py, .txt, .toml, etc.
+# include_text = [
+#     "getting_started.md",
+#     "guides/*.md",
+# ]
+
+# Text files / glob patterns to exclude (applied after include).
+# exclude_text = [
+#     "drafts/*.md",
+#     "WIP_*.md",
+# ]
+
+# Include the sample Python script as a text file
+include_text = [
+    "*.md",
+    "hello.py",
+]
+
+# ---------- Binary files ----------
+
+# Any non-text file can be included (base64-encoded in the bundle).
+# Supports glob patterns. Not limited to images — PDFs, archives, data files, etc.
+include_binary = [
+    "assets/*",
+]
+
+# Binary glob patterns to exclude (applied after include).
+# exclude_binary = [
+#     "assets/*.tmp",
+# ]
