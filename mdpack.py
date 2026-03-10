@@ -47,15 +47,51 @@ def validate_path(rel: str) -> None:
 
 
 def parse_metadata(content: str) -> dict:
+    """Extract metadata from YAML frontmatter (--- delimited block at file start)."""
     meta: dict = {"title": "", "description": "", "prereqs": []}
-    for line in content.split("\n")[:10]:
-        if line.startswith("Title:"):
-            meta["title"] = line[len("Title:"):].strip()
-        elif line.startswith("Description:"):
-            meta["description"] = line[len("Description:"):].strip()
-        elif line.startswith("Prereqs:"):
-            raw = line[len("Prereqs:"):].strip()
-            meta["prereqs"] = [p.strip() for p in raw.split(",") if p.strip()]
+
+    if not content.startswith("---"):
+        return meta
+
+    end = content.find("\n---", 3)
+    if end == -1:
+        return meta
+
+    fm = content[3:end]
+    current_list_key = None
+    for line in fm.split("\n"):
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
+
+        # List item
+        if stripped.startswith("- ") and current_list_key:
+            val = stripped[2:].strip().strip('"').strip("'")
+            if current_list_key == "prereqs":
+                meta["prereqs"].append(val)
+            continue
+
+        # Key: value
+        if ":" in stripped:
+            key, _, val = stripped.partition(":")
+            key = key.strip().lower()
+            val = val.strip().strip('"').strip("'")
+            current_list_key = None
+
+            if key == "title" and val:
+                meta["title"] = val
+            elif key == "description" and val:
+                meta["description"] = val
+            elif key == "prereqs":
+                if val and val != "[]":
+                    meta["prereqs"] = [
+                        p.strip().strip('"').strip("'")
+                        for p in val.split(",") if p.strip()
+                    ]
+                else:
+                    current_list_key = "prereqs"
+                    meta["prereqs"] = []
+
     return meta
 
 

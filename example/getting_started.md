@@ -1,5 +1,7 @@
-Title: Getting Started
-Description: Quick-start guide for new users
+---
+title: Getting Started
+description: Quick-start guide for new users
+---
 
 # Getting Started
 

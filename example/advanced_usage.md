@@ -1,6 +1,10 @@
-Title: Advanced Usage
-Description: Power-user features and customisation options
-Prereqs: Getting Started, Setup Guide
+---
+title: Advanced Usage
+description: Power-user features and customisation options
+prereqs:
+  - Getting Started
+  - Setup Guide
+---
 
 # Advanced Usage
 

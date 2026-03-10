@@ -92,20 +92,32 @@ Text files are stored verbatim. Binary files are base64-encoded. Every file incl
 
 ## Text file metadata
 
-Text files may optionally start with `Title:` and `Description:` lines in the first 10 lines, which will be put in the table of contents of the bundle and the TABLE_OF_CONTENTS.md after extraction:
+Text files may optionally start with YAML frontmatter (delimited by `---`), which populates the table of contents in the bundle and `TABLE_OF_CONTENTS.md` after extraction:
 
-```
-Title: Getting Started
-Description: Quick-start guide for new users
-Prereqs: Setup Guide
+```yaml
+---
+title: Getting Started
+description: Quick-start guide for new users
+prereqs:
+  - Setup Guide
+  - Advanced Usage
+---
 
 # Getting Started
 ...
 ```
 
-If `Title:` is missing, the file's path is used as the title. If `Description:` is missing, it defaults to empty. `Prereqs` is optional and lists comma-separated prerequisite document titles.
+Supported fields:
 
-Any text file can be included — `.md`, `.txt`, `.toml`, `.py`, etc. Files without metadata lines are bundled normally; they just won't have a descriptive title or description in the table of contents.
+| Field | Description |
+|-------|-------------|
+| `title` | Displayed in the table of contents (defaults to file path if omitted) |
+| `description` | Appears in the TOC (defaults to empty) |
+| `prereqs` | List of prerequisite document titles (shows reading order) |
+
+Prereqs can also be given as a comma-separated string: `prereqs: "Setup Guide, Advanced Usage"`.
+
+Any text file can be included — `.md`, `.txt`, `.toml`, `.py`, etc. Files without frontmatter are bundled normally; they just won't have a descriptive title or description in the table of contents. Additional frontmatter fields (e.g., `section_id`, `order`) are allowed and preserved in the file but ignored by mdpack.
 
 ## Testing
 

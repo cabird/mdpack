@@ -1,5 +1,7 @@
-Title: Setup Guide
-Description: Environment and configuration setup instructions
+---
+title: Setup Guide
+description: Environment and configuration setup instructions
+---
 
 # Setup Guide
 
