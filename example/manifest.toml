@@ -3,10 +3,11 @@
 # All configuration for the packer lives here.
 # Run:  python mdpack.py example/
 
-# ---------- Output ----------
+# ---------- Identity ----------
 
-# Bundle output filename (written to the current working directory)
-output = "EXAMPLE.mdpack"
+# Bundle name and version. Output filename is derived: {name}-{version}.mdpack
+name = "EXAMPLE"
+version = "1.0"
 
 # Default directory name the unpacker creates when extracting
 unpack_dir = "example_md_docs"

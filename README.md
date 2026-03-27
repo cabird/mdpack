@@ -53,7 +53,8 @@ The source directory needs a `manifest.toml`:
 
 ```toml
 # Required
-output = "MY_PROJECT.mdpack"    # Output filename
+name = "MY_PROJECT"              # Bundle name
+version = "1.0"                  # Bundle version — output is {name}-{version}.mdpack
 unpack_dir = "my_project_docs"  # Directory the unpacker creates
 bootstrap = "getting_started.md" # The file the agent is instructed to read and "run" after extraction
 

@@ -1,4 +1,4 @@
-# MDPACK BOOT (do this)
+# MDPACK BOOT (do this){version_line}
 
 This bundle is UTF-8 with `\n` line endings. Read it as UTF-8.
 

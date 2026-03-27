@@ -62,7 +62,8 @@ stress_test/
 This file must be exact — mdpack reads it to know what to pack:
 
 ```toml
-output = "STRESS_TEST.mdpack"
+name = "STRESS_TEST"
+version = "1.0"
 unpack_dir = "stress_test_docs"
 bootstrap = "getting_started.md"
 
@@ -96,7 +97,7 @@ python stress_test/gen_binaries.py
 python mdpack.py stress_test/
 ```
 
-This should produce `STRESS_TEST.mdpack` in the current directory. Verify it was created and note the file count (should be 12 user files + manifest.toml + TABLE_OF_CONTENTS.md = 14 sections in the bundle).
+This should produce `STRESS_TEST-1.0.mdpack` in the current directory. Verify it was created and note the file count (should be 12 user files + manifest.toml + TABLE_OF_CONTENTS.md = 14 sections in the bundle).
 
 ## Step 4: Discover Available Models
 
@@ -132,7 +133,7 @@ For each model, do 3 runs. Process one model at a time — launch all 3 runs for
 For each run:
 
 1. Create the run directory: `stress_test_runs/{model_id}_run{N}/`
-2. Copy the bundle with a neutral filename: `cp STRESS_TEST.mdpack stress_test_runs/{model_id}_run{N}/PROJECT_DOCS.mdpack`
+2. Copy the bundle with a neutral filename: `cp STRESS_TEST-1.0.mdpack stress_test_runs/{model_id}_run{N}/PROJECT_DOCS.mdpack`
 3. Copy the reflection instructions: `cp step2.md stress_test_runs/{model_id}_run{N}/step2.md`
 4. Launch a sub-agent using that model with ONLY this prompt (fill in the absolute path):
 

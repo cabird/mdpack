@@ -10,7 +10,7 @@ Run these steps in order.
 
 Remove any artifacts from previous runs so we start fresh:
 
-- Delete `EXAMPLE.mdpack` if it exists.
+- Delete `EXAMPLE-1.0.mdpack` if it exists.
 - Delete the `example_md_docs/` directory if it exists (this is the
   `unpack_dir` declared in `example/manifest.toml`).
 - Check for any scripts in the repo root (other than `mdpack.py`) that
@@ -27,14 +27,14 @@ Run the packer to create a fresh bundle:
 python mdpack.py example/
 ```
 
-Confirm that `EXAMPLE.mdpack` was created and is non-empty.
+Confirm that `EXAMPLE-1.0.mdpack` was created and is non-empty.
 
 ## 3. Cold unpack
 
 This is the core of the test. Spawn a **new subagent with no other
 context** and give it exactly this instruction:
 
-> Read the front of EXAMPLE.mdpack and run it.
+> Read the front of EXAMPLE-1.0.mdpack and run it.
 
 The subagent must figure out the format, write its own extractor, and
 unpack the bundle — all from the boot instructions embedded in the file.
